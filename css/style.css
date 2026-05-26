@@ -1,263 +1,277 @@
-/* ==========================================================================
-   1. VARIABLES & DESIGN TOKENS
-   ========================================================================== */
-:root {
-    --bg-primary: #fcfcfd;
-    --bg-surface: #ffffff;
-    --text-main: #1f2937;
-    --text-muted: #4b5563;
-    --accent-color: #2563eb; /* Accessible contrast ratio > 4.5:1 against white */
-    --accent-hover: #1d4ed8;
-    --border-color: #e5e7eb;
-    --max-width: 1000px;
-}
+/* =========================
+   NEON AURORA DESIGN SYSTEM
+   Lavanya T.R Portfolio
+   ========================= */
 
-/* ==========================================================================
-   2. RESET & BASE STYLES
-   ========================================================================== */
+/* RESET */
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
+:root {
+  --bg1: #0b0b1a;
+  --bg2: #12002f;
+  --primary: #00ffe7;
+  --secondary: #ff00cc;
+  --accent: #7c4dff;
+  --text: #ffffff;
+  --muted: #c7c7c7;
+}
+
+/* BODY */
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    line-height: 1.6;
-    background-color: var(--bg-primary);
-    color: var(--text-main);
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  background: radial-gradient(circle at top, var(--bg2), var(--bg1));
+  color: var(--text);
+  line-height: 1.7;
+  overflow-x: hidden;
 }
 
-/* ==========================================================================
-   3. ACCESSIBILITY & KEYBOARD FOCUS UTILITIES
-   ========================================================================== */
-/* Hide skip link off-screen until a keyboard user tabs to it */
+/* SOFT BACKGROUND GLOW ANIMATION */
+body::before {
+  content: "";
+  position: fixed;
+  width: 400px;
+  height: 400px;
+  background: var(--secondary);
+  filter: blur(140px);
+  opacity: 0.25;
+  top: -100px;
+  left: -100px;
+  z-index: -1;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  width: 400px;
+  height: 400px;
+  background: var(--primary);
+  filter: blur(140px);
+  opacity: 0.2;
+  bottom: -100px;
+  right: -100px;
+  z-index: -1;
+}
+
+/* ACCESSIBILITY SKIP LINK */
 .skip-link {
-    position: absolute;
-    top: -100px;
-    left: 0;
-    background: var(--accent-color);
-    color: white;
-    padding: 1rem;
-    z-index: 100;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 0 0 4px 0;
-    transition: top 0.2s ease;
+  position: absolute;
+  top: -40px;
+  left: 10px;
+  background: var(--primary);
+  color: black;
+  padding: 10px 14px;
+  border-radius: 8px;
+  z-index: 1000;
+  font-weight: bold;
 }
 
 .skip-link:focus {
-    top: 0;
+  top: 10px;
 }
 
-/* Clear focus indicators for keyboard-only navigation */
-input:focus-visible, 
-textarea:focus-visible, 
-button:focus-visible, 
-a:focus-visible {
-    outline: 3px solid var(--accent-color);
-    outline-offset: 3px;
+/* HEADER */
+.site-header {
+  text-align: center;
+  padding: 2.5rem 1rem;
+  background: linear-gradient(90deg, var(--secondary), var(--accent));
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
-/* ==========================================================================
-   4. LAYOUT COMPONENT STYLING
-   ========================================================================== */
-header {
-    background-color: var(--bg-surface);
-    border-bottom: 1px solid var(--border-color);
-    position: sticky;
-    top: 0;
-    z-index: 10;
+.site-header h1 {
+  font-size: 2.5rem;
+  letter-spacing: 2px;
 }
 
-.header-container {
-    max-width: var(--max-width);
-    margin: 0 auto;
-    padding: 1rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+/* TAGLINE */
+.tagline {
+  color: #eaeaea;
+  margin-top: 5px;
+  font-size: 1.1rem;
 }
 
-.logo {
-    font-weight: 700;
-    font-size: 1.25rem;
-    color: var(--accent-color);
+/* NAVIGATION */
+.nav-links {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin-top: 15px;
+  flex-wrap: wrap;
 }
 
-nav ul {
-    display: flex;
-    list-style: none;
-    gap: 1.5rem;
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
 }
 
-nav a {
-    text-decoration: none;
-    color: var(--text-muted);
-    font-weight: 500;
-    padding: 0.25rem 0;
+.nav-links a:hover,
+.nav-links a:focus {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  transform: translateY(-2px);
 }
 
-nav a:hover, nav a[aria-current="page"] {
-    color: var(--accent-color);
-    border-bottom: 2px solid var(--accent-color);
+/* MAIN SECTIONS */
+.section {
+  max-width: 1000px;
+  margin: auto;
+  padding: 3rem 1.5rem;
 }
 
-main {
-    max-width: var(--max-width);
-    width: 100%;
-    margin: 0 auto;
-    padding: 3rem 2rem;
-    flex: 1; /* Pushes the footer to the bottom of empty pages */
-}
-
-/* ==========================================================================
-   5. PAGE SECTIONS & COMPONENT CARDS
-   ========================================================================== */
+/* HERO SECTION */
 .hero {
-    margin-bottom: 4rem;
+  text-align: center;
+  padding: 4rem 1.5rem;
 }
 
-h1 {
-    font-size: 2.5rem;
-    margin-bottom: 0.5rem;
+.hero h2 {
+  font-size: 2rem;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.subtitle {
-    font-size: 1.25rem;
-    color: var(--accent-color);
-    font-weight: 600;
-    margin-bottom: 1.5rem;
+.hero p {
+  margin-top: 1rem;
+  color: var(--muted);
 }
 
-.bio-text {
-    font-size: 1.1rem;
-    max-width: 65ch; /* Limits width to perfect reading length for humans */
-    color: var(--text-muted);
+/* HERO CARD */
+.hero-card {
+  margin-top: 1.5rem;
+  display: inline-block;
+  padding: 1rem 1.5rem;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(0, 255, 231, 0.3);
+  backdrop-filter: blur(10px);
 }
 
-/* Skills Grid */
-.skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 1.5rem;
-    list-style: none;
-    margin-top: 1.5rem;
+/* PROJECT GRID */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
 }
 
-.skills-grid li {
-    background: var(--bg-surface);
-    padding: 1rem;
-    border: 1px solid var(--border-color);
-    border-radius: 6px;
-    text-align: center;
-    font-weight: 500;
+/* PROJECT CARD */
+.card {
+  background: linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+  padding: 1.5rem;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
 }
 
-/* Project Cards Grid Layout */
-.projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
+/* glowing border animation */
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+  opacity: 0;
+  transition: 0.4s;
+  z-index: 0;
 }
 
-.project-card {
-    background: var(--bg-surface);
-    border: 1px solid var(--border-color);
-    padding: 1.5rem;
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
+.card:hover::before {
+  opacity: 0.15;
 }
 
-.project-tech {
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--accent-color);
-    font-weight: bold;
-    margin: 0.25rem 0 1rem 0;
+.card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 10px 40px rgba(0, 255, 231, 0.2);
 }
 
-.project-card p {
-    color: var(--text-muted);
-    margin-bottom: 1.5rem;
-    flex-grow: 1;
+.card h3 {
+  color: var(--primary);
+  margin-bottom: 10px;
 }
 
-.project-link {
-    color: var(--accent-color);
-    text-decoration: none;
-    font-weight: 600;
+/* META TEXT */
+.meta {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: var(--muted);
 }
 
-.project-link:hover {
-    text-decoration: underline;
-}
-
-/* ==========================================================================
-   6. ACCESSIBLE CONTACT FORM STYLING
-   ========================================================================== */
+/* FORM */
 .contact-form {
-    background: var(--bg-surface);
-    border: 1px solid var(--border-color);
-    padding: 2rem;
-    border-radius: 8px;
-    max-width: 600px;
-    margin: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 500px;
+  margin: auto;
+  padding: 2rem;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
 }
 
-.form-group {
-    margin-bottom: 1.5rem;
-    display: flex;
-    flex-direction: column;
-}
-
-.form-group label {
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-}
-
-.required {
-    color: #dc2626;
-}
-
+/* INPUTS */
 input, textarea {
-    padding: 0.75rem;
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
-    font-size: 1rem;
-    font-family: inherit;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  background: rgba(255,255,255,0.08);
+  color: white;
+  transition: 0.3s;
 }
 
-.submit-btn {
-    background: var(--accent-color);
-    color: #ffffff;
-    padding: 0.75rem 1.5rem;
-    border: none;
-    border-radius: 4px;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background 0.2s ease;
+input:focus,
+textarea:focus {
+  border: 1px solid var(--primary);
+  box-shadow: 0 0 10px var(--primary);
 }
 
-.submit-btn:hover {
-    background: var(--accent-hover);
+/* BUTTON */
+button {
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  background: linear-gradient(90deg, var(--secondary), var(--primary));
+  color: black;
+  transition: 0.3s;
 }
 
-/* ==========================================================================
-   7. GLOBAL FOOTER
-   ========================================================================== */
-footer {
-    background: var(--bg-surface);
-    border-top: 1px solid var(--border-color);
-    text-align: center;
-    padding: 1.5rem;
-    color: var(--text-muted);
-    font-size: 0.9rem;
+button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px var(--primary);
+}
+
+/* FOOTER */
+.site-footer {
+  text-align: center;
+  padding: 2rem;
+  margin-top: 3rem;
+  background: rgba(0,0,0,0.6);
+  border-top: 1px solid rgba(255,255,255,0.1);
+  color: var(--muted);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .site-header h1 {
+    font-size: 2rem;
+  }
+
+  .hero h2 {
+    font-size: 1.6rem;
+  }
 }
